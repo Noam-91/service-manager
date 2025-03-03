@@ -1,0 +1,14 @@
+/* components/engineerSelector/engineerSelector.wxss */
+.picker-content {
+  padding: 10px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  color: #666;
+}
+.modal-input {
+  width: 90%;
+  margin: 10px auto;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

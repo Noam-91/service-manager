@@ -1,0 +1,26 @@
+<!-- login.wxml -->
+<view class="userinfo">
+  <block wx:if="{{!hasUserInfo}}">
+    <button 
+      class="fetch-button"
+      wx:if="{{canIUseGetUserProfile}}" 
+      bindtap="handleLogin"
+      type="primary"
+    >
+      微信登录
+    </button>
+    <view wx:else class="warning">
+      请升级微信至最新版本
+    </view>
+  </block>
+  <block wx:else>
+    <view class="greeting">欢迎，{{userInfo.fullName? userInfo.fullName : userInfo.nickName}}！</view>
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    </button> 
+    <view wx:if="{{!userInfo.fullName}}"class="nickname-wrapper">
+      <text class="nickname-label">姓名(英文)</text>
+      <input type="nickname" class="nickname-input" placeholder="请输入姓名" bind:change="onInputChange" />
+    </view>
+  </block>
+</view>

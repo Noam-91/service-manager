@@ -1,0 +1,112 @@
+<!--components/work-report/workReport.wxml-->
+<view enable-flex="true" class="container">
+  <view class="page-size"  >
+    <view class="header">
+      <image src="ZEME.png" class="header-img" mode="widthFix"/>
+    </view>
+
+    <view class="title">FIELD SERVICE WORK REPORT</view>
+    <!-- Table with double border -->
+    <view class="double-border-edge">
+      <!-- Basic Info -->
+      <view class="basic-info-container">
+        <!-- Row 1 -->
+        <view class="quad-cols">
+          <view class="first-col first-row cell header-col">Vessel Name:</view>
+          <input class="cell first-row" type="text" value="{{localData.vessel_name}}" bindinput="bindKeyInput" data-params="vessel_name" />
+          <view class="first-row cell header-col">IMO:</view>
+          <input class="first-row cell last-col" type="text" value="{{localData.imo}}" bindinput="bindKeyInput" data-params="imo" />
+        </view>
+        <!-- Row 2 -->
+        <view class="quad-cols">
+          <view class="first-col cell header-col">Owner:</view>
+          <input class="cell" type="text" value="{{localData.owner}}" bindinput="bindKeyInput" data-params="owner" />
+          <view class="cell header-col">Date:</view>
+          <input class="cell last-col" type="text" value="{{localData.date}}" bindinput="bindKeyInput" data-params="date" />
+        </view>
+        <!-- Row 3 -->
+        <view class="quad-cols">
+          <view class="first-col cell header-col">System:</view>
+          <input class="cell" type="text" value="{{localData.system}}" bindinput="bindKeyInput" data-params="system" />
+          <view class="cell header-col">Location:</view>
+          <input class="cell last-col" type="text" value="{{localData.location}}" bindinput="bindKeyInput" data-params="location" />
+        </view>  
+        <!-- Row 4 -->
+        <view class="quad-cols">  
+          <view class="first-col cell header-col">Work Order:</view>
+          <input class="cell" type="text" value="{{localData.work_order}}" bindinput="bindKeyInput" data-params="work_order" />
+          <view class="cell header-col">Contact Person:</view>
+          <input class="cell last-col" type="text" value="{{localData.contact_person}}" bindinput="bindKeyInput" data-params="contact_person" />
+        </view>
+      </view>
+      <!-- Engineer Row -->
+      <view class="dual-cols">
+        <view class="cell first-col header-col">Service Engineer:</view>
+        <engineerSelector bind:engChange="onEngChange" engineer="{{localData.service_engineer || ''}}" />
+      </view>
+      <!-- Work time -->
+      <view class="time-textarea">
+        <view class="time-title">DETAILS OF WORK CARRIED OUT: </view>
+          <view class="dual-cols">
+            <view class="header-col">Departure time:</view>
+            <input type="text" value="{{localData.departure_time}}" bindinput="bindKeyInput" data-params="departure_time" placeholder="departure time"/>
+          </view>
+          <view class="dual-cols">
+            <view class="header-col">Onboard time:</view>
+            <input type="text" value="{{localData.onboard_time}}" bindinput="bindKeyInput" data-params="onboard_time" placeholder="onboard time"/>
+          </view>
+          <view class="dual-cols">
+            <view class="header-col">Disembark time:</view>
+            <input type="text" value="{{localData.disembark_time}}" bindinput="bindKeyInput" data-params="disembark_time" placeholder="disembark time"/>
+          </view>
+      </view>
+      <!-- Service content -->
+      <view class="service-textarea">
+        <view class="service-ol" 
+            wx:for="{{localData.service_content}}"
+            wx:key="index"
+        >
+          <view class="service-li">
+            <text class="li-number">{{index + 1}}.</text>
+            <textarea  class="li-input"
+              id="textarea{{index}}"
+              value="{{item}}" 
+              bindinput="bindServiceInput" 
+              data-index="{{index}}"
+              placeholder="请输入内容"
+              auto-height
+              maxlength="-1"
+              confirm-type="done"
+            />
+            <button 
+              class="delete-btn"
+              bindtap="deleteLine"
+              data-index="{{index}}"
+              type="warn"
+              size="mini"
+            >-</button>
+          </view>
+        </view>
+        <button class="add-btn" bindtap="addNewLine">+</button>
+        <view class="service-comments">COMMENTS: </view>
+      </view>
+      
+      <!-- Signature -->
+      <view class="signature-area">
+        <view class="signature-col">
+          <view >Signature of Service Engineer:</view>
+          <view >Date:</view>
+        </view>
+        <view class="signature-col">
+          <view >Signature of Master/Chief Engineer:</view>
+          <view >Date:</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Footer -->
+    <view class="footer">
+      <text>Add: 6F, Building 5 Hipark 6, 666 Jianshe Er Road, Xiaoshan District, Hangzhou City, Zhejiang, P.R. China, P.C.: 31121 </text>
+    </view>
+  </view>
+</view>

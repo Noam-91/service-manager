@@ -1,0 +1,12 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+  justify-content: space-between;
+}

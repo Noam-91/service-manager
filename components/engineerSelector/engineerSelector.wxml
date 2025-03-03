@@ -1,0 +1,26 @@
+<!--components/engineerSelector/engineerSelector.wxml-->
+<view class="cell last-col">
+  <picker 
+    mode="selector" 
+    range="{{engineerOptions}}" 
+    bindchange="onSelectEngineer"
+  >
+    <view class="picker-content">
+        {{service_engineer}}
+        <text style="color:green"> 添加</text>
+        <text style="color:red" catch:tap="clearAllEngineers"> 清空</text>
+    </view>
+  </picker>
+</view>
+<modal 
+  title="新增工程师" 
+  wx:if="{{showAddDialog}}"
+  bindconfirm="confirmAddEngineer"
+  bindcancel="cancelAddEngineer"
+>
+  <input class="modal-input"
+    placeholder="请输入姓名" 
+    value="{{newEngineerName}}" 
+    bindinput="bindNewEngineerInput"
+  />
+</modal>

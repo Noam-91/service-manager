@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <login/>
+</scroll-view>

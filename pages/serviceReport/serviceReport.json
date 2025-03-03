@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "workReport":"/components/workReport/workReport",
+    "timesheet":"/components/timesheet/timesheet"
+  }
+}

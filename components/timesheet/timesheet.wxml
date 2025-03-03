@@ -1,0 +1,160 @@
+<!--components/timesheet.wxml-->
+<view enable-flex="true" class="container">
+  <view class="page-header">
+    <image src="ZEME.png" class="header-img" mode="widthFix"/>
+  </view>
+  <view class="page-size">
+    <view class="top-info">
+    <image src="zeme2.png" class="zeme-img" mode="widthFix" alt="zeme-img"/>
+      <view class="timesheet-title">
+        <text class="title-text">Timesheet</text>
+        <!-- Basic Info -->
+        <view class="three-rows">
+          <view class="rows">
+            <text class="info-header">Contact:</text>
+            <input class="content" type="text" value="{{localData.contact_person}}" bindinput="bindKeyInput" data-params="contact_person" />
+          </view>
+          <view class="rows">
+            <text class="info-header">Location:</text>
+            <input class="content" type="text" value="{{localData.location}}" bindinput="bindKeyInput" data-params="location" />
+          </view>
+          <view class="rows">
+            <text class="info-header">Service Engineer:</text>
+            <input class="content" type="text" value="{{localData.service_engineer}}" bindinput="bindKeyInput" data-params="service_engineer" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- Timesheet Table -->
+    <view class="nine-cols">
+      <!-- Day Column -->
+      <view class="cols">
+        <text class="cell table-header">Day</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="days_index"
+        >
+          <view class="cell">{{item.day}}</view>
+        </block>
+      </view>
+      <!-- Date Column -->
+      <view class="cols">
+        <text class="cell table-header">Date</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="date_index"
+        >
+        <input type="text" class="cell"
+            value="{{item.date}}" 
+            bindinput="bindTableInput" 
+            data-index="{{index}}"
+            data-params="date"/>
+        </block>
+      </view>
+      <!-- Project Column -->
+      <view class="cols">
+        <text class="cell table-header">Project</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="project_index"
+        >
+        <input type="text" class="cell" 
+            value="{{item.project}}" 
+            bindinput="bindTableInput" 
+            data-index="{{index}}"
+            data-params="project"/>
+        </block>
+      </view>
+      <!-- In Column -->
+      <view class="cols">
+        <text class="cell table-header">In</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="in_time_index"
+        >
+        <input type="text" class="cell" 
+            value="{{item.in_time}}" 
+            bindinput="bindTableInput" 
+            data-index="{{index}}"
+            data-params="in_time"/>
+        </block>
+      </view>
+      <!-- Out Column -->
+      <view class="cols">
+        <text class="cell table-header">Out</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="out_time_index"
+        >
+        <input type="text" class="cell" 
+            value="{{item.out_time}}" 
+            bindinput="bindTableInput" 
+            data-index="{{index}}"
+            data-params="out_time"/>
+        </block>
+      </view>
+      <!-- Hours Column -->
+      <view class="cols">
+        <text class="cell table-header">Hours</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="hours_index"
+        >
+          <view class="cell">{{item.hours}}</view>
+        </block>
+      </view>
+      <!-- NOP Column -->
+      <view class="cols">
+        <text class="cell table-header">Number of People</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="number_of_people_index"
+        >
+          <input type="text" class="cell" 
+              value="{{item.number_of_people}}" 
+              bindinput="bindTableInput" 
+              data-index="{{index}}"
+              data-params="number_of_people"/>
+        </block>
+      </view>
+      <!-- Total hours Column -->
+      <view class="cols">
+        <text class="cell table-header">Total hours</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="accumulated_hours_index"
+        >
+          <view class="cell">{{item.accumulated_hours}}</view>
+        </block>
+      </view>
+      <!-- Remark Column -->
+      <view class="cols">
+        <text class="cell table-header">Remark</text>
+        <block class="cell"
+          wx:for="{{localData.work_days}}" 
+          wx:key="remark_index"
+        >
+          <input type="text" class="cell" 
+            value="{{item.remark}}" 
+            bindinput="bindTableInput" 
+            data-index="{{index}}"
+            data-params="remark"/>
+        </block>
+      </view>
+    </view>
+    <view class="hours_total">Hours total: {{localData.total_hours}}</view>
+    <button class="add-btn" bindtap="addNewLine">+</button>
+    <button class="add-btn" bindtap="deleteLine" style="background-color: red;">删除一行</button>
+  </view>
+  <!-- Signature -->
+  <view class="signature-area">
+    <view class="signature-col">
+      <view >Signature of Service Engineer:</view>
+      <view >Date:</view>
+    </view>
+    <view class="signature-col">
+      <view >Signature of Master/Chief Engineer:</view>
+      <view >Date:</view>
+    </view>
+  </view>
+</view>

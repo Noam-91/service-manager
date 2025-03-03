@@ -1,0 +1,5 @@
+<!--pages/serviceReport/serviceReport.wxml-->
+<workReport bind:update="onUpdateData" data="{{jsonData}}"/>
+<timesheet bind:update="onUpdateData" data="{{jsonData}}"/>
+
+<button class="print-btn" bind:tap="generateDoc" size="mini">打印</button>
