@@ -14,13 +14,16 @@
     </view>
   </block>
   <block wx:else>
-    <view class="greeting">欢迎，{{userInfo.fullName? userInfo.fullName : userInfo.nickName}}！</view>
+    <view class="greeting">欢迎，{{userInfo.fullName? userInfo.fullName : "微信用户"}}！</view>
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
     </button> 
+    <text>点击头像可更换图片</text>
     <view wx:if="{{!userInfo.fullName}}"class="nickname-wrapper">
       <text class="nickname-label">姓名(英文)</text>
       <input type="nickname" class="nickname-input" placeholder="请输入姓名" bind:change="onInputChange" />
     </view>
+    <button bind:tap="onSave" class="btns" size="default" type="primary">保存</button>
+    <button bind:tap="navigateToDocument" class="btns" size="default" type="default">我的文档</button>
   </block>
 </view>

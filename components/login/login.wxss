@@ -12,10 +12,11 @@
 .greeting{
   margin: 30rpx;
 }
+.avatar-wrapper{
+  background: transparent;
+}
 .userinfo-avatar {
-  /* overflow: hidden; */
-  /* width: 128rpx;
-  height: 128rpx; */
+  overflow: hidden;
   width: 200rpx;
   height: 200rpx;
   margin: 20% 0;
@@ -38,4 +39,7 @@
 
 .nickname-input {
   flex: 1;
+}
+.btns{
+  margin: 60rpx 0 0 0;
 }

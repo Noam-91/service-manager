@@ -4,9 +4,10 @@
     "pages/logs/logs",
     "pages/serviceReport/serviceReport",
     "pages/serviceStatement/serviceStatement",
-    "components/workReport/workReport"
+    "components/workReport/workReport",
+    "pages/document/document"
   ],
-  "entryPagePath": "pages/serviceReport/serviceReport",
+  "entryPagePath": "pages/index/index",
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
@@ -21,8 +22,8 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/serviceReport/serviceReport",
-        "text": "报告"
+        "pagePath":"pages/logs/logs",
+        "text": "LOGs"
       }
     ]
   },

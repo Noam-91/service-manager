@@ -1,5 +1,6 @@
 // pages/serviceReport/serviceReport.js
 const util = require('../../utils/util.js')
+const reportService = require('../../services/reportService')
 
 Page({
   data: {
@@ -34,8 +35,16 @@ Page({
     }
   },
 
-  onLoad() {
-    
+  async onLoad(options) {
+    if (options.id) {
+      try {
+        const {code, data} = await reportService.getReportById(options.id);
+        console.log(data)
+        this.setData({ jsonData: data });
+      } catch (e) {
+        wx.showToast({ title: '数据解析失败', icon: 'none' });
+      }
+    }
   },
 
   // Callback: update work report & timesheet
