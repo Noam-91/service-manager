@@ -4,6 +4,7 @@ const reportService = require('../../services/reportService')
 
 Page({
   data: {
+    reportId: "",
     jsonData:{
       vessel_name: "",
       imo: "",
@@ -36,11 +37,20 @@ Page({
   },
 
   async onLoad(options) {
-    if (options.id) {
+    if (options.id!="undefined") {
       try {
         const {code, data} = await reportService.getReportById(options.id);
-        console.log(data)
-        this.setData({ jsonData: data });
+        if(code===404){
+          wx.showToast({
+            title: '数据不存在'
+          })
+        }else{
+          this.setData({ jsonData: data });
+        }
+        this.setData({
+          reportId:options.id
+        })
+        
       } catch (e) {
         wx.showToast({ title: '数据解析失败', icon: 'none' });
       }
@@ -109,5 +119,24 @@ Page({
     }finally{
       wx.hideLoading()
     }
+  },
+
+  // Save file to DB
+  saveReport: function (){
+    wx.showLoading({ title: '保存中...' })
+    const { _id, _openid, ...cleanData } = this.data.jsonData;
+    try{
+      if(!this.data.reportId){
+        reportService.addReport(cleanData);
+      }else{
+        reportService.editReport(this.data.reportId,cleanData);
+      };
+      wx.showToast({ title: '已保存', icon: 'none' })
+    }catch(err){
+      console.log(err);
+    }finally{
+      wx.hideLoading();
+    }
+    
   }
 })

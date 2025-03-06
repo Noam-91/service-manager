@@ -4,7 +4,7 @@
   <button type="primary"
       bind:tap="navigateToDetail">新建报告</button>
   <view class="table-header">
-    <view class="col date">登船日期</view>
+    <view class="col date">日期</view>
     <view class="col name">船名</view>
     <view class="col location">地点</view>
   </view>
@@ -14,7 +14,7 @@
       bind:tap="navigateToDetail"
       data-id="{{item._id}}"
     >
-      <view class="col date">{{item.onboard_time}}</view>
+      <view class="col date">{{item.date}}</view>
       <view class="col name">{{item.vessel_name}}</view>
       <view class="col location">{{item.location}}</view>
     </view>

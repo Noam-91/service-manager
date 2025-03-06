@@ -15,7 +15,7 @@ const getAllReports = async (page = 1, pageSize = 10) => {
     const [dataRes, countRes] = await Promise.all([
       db.collection('service_reports')
         .where({ _openid: wx.getStorageSync('openid') })
-        .orderBy('onboard_time', 'desc')
+        .orderBy('date', 'desc')
         .skip(skip)
         .limit(pageSize)
         .get(),
@@ -66,7 +66,6 @@ const addReport = async (jsonData) => {
     const res = await db.collection('service_reports').add({
       data: {
         ...jsonData,
-        _openid: wx.getStorageSync('openid'), 
         createTime: db.serverDate(), 
         updateTime: db.serverDate()
       }

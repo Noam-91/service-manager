@@ -13,11 +13,11 @@
 .table-header {
   background-color: #f5f5f5;
   font-weight: bold;
-  text-align: center;
 }
 
 .col {
   padding: 0 10rpx;
+  text-align: center;
 }
 
 .date {
@@ -32,7 +32,6 @@
 
 .location {
   width: 30%;
-  text-align: right;
 }
 
 .table-row {

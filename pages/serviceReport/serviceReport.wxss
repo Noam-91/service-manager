@@ -1,9 +1,18 @@
 /* pages/serviceReport/serviceReport.wxss */
 .print-btn{
   position: fixed;
-  right:0;
+  right:10rpx;
   top: 0;
   z-index: 999;
   background-color: rgb(189, 189, 196);
+  text-align: center;
+}
+.save-btn{
+  position: fixed;
+  left:10rpx;
+  top: 0;
+  z-index: 999;
+  background-color: rgb(189, 189, 196);
+  color: red;
   text-align: center;
 }

@@ -3,3 +3,4 @@
 <timesheet bind:update="onUpdateData" data="{{jsonData}}"/>
 
 <button class="print-btn" bind:tap="generateDoc" size="mini">打印</button>
+<button class="save-btn" bind:tap="saveReport" size="mini">保存</button>

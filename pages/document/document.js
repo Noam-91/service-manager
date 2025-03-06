@@ -10,22 +10,17 @@ Page({
   },
 
   async onLoad(options) {
-    // TEST
-    wx.setStorageSync('openid', 'oWNMK0VLqH58lQ5E1BeJXIp4WmO4');
-
     const result = await reportService.getAllReports(1, 10);
     try{
       if (result.code !== 0) {
         throw new Error(result.error || '获取数据失败');
       }
       const { page, total, list: reports } = result.data;
-      console.log(result.data);
       this.setData({
         pagedReports: reports,
         page,
         totalPage: Math.ceil(total / 10) 
       });
-      console.log(this.data)
 
     }catch (error) {
       console.error('数据加载失败:', error);
@@ -56,16 +51,15 @@ Page({
     navigateToDetail(e) {
       const reportId = e.currentTarget.dataset.id;
       const url = `/pages/serviceReport/serviceReport?id=${reportId}`;
-      wx.navigateTo({
-        url: url,
-        success: (res) => {
-          console.log('跳转成功:', res)
-        },
-        fail: (err) => {
-          console.error('跳转失败:', err)
-          wx.showToast({ title: '跳转失败', icon: 'none' })
-        }
-      })
+      wx.navigateTo({url});
     },
 
+    // Pull down refresh
+    onPullDownRefresh() {
+      this.onLoad(); // Refresh
+      setTimeout(()=>{
+        wx.stopPullDownRefresh()
+      },1000)
+      
+    },
 })
