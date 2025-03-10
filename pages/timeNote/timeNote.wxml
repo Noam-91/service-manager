@@ -1,0 +1,57 @@
+<view class="container">
+  <view class="header">
+    <text class="title">时间小计</text>
+    <view class="header-buttons">
+      <button class="export-button" bindtap="exportData">导出</button>
+      <button class="reset-button" bindtap="resetData">重置</button>
+      <button class="save-button" bindtap="saveData">保存</button>
+    </view>
+  </view>
+  <view class="input-container">
+    <text class="name-cell">船名: </text>
+    <input class="input-cell" type="text" value="{{shipName}}" bindinput="onShipNameChange"/>
+  </view>
+  <view class="input-container">
+    <text class="name-cell">地点: </text>
+    <input class="input-cell" type="text" value="{{location}}" bindinput="onLocationChange" />
+  </view>
+  <view class="table">
+    <block wx:for="{{timeNotes}}" wx:key="index">
+      <view class="table-row">
+        <view class="table-cell name-cell">
+          <text>{{item.chineseName}}</text>
+          <block wx:if="{{item.name === 'waitingTime' || item.name === 'hotelToShip' || item.name === 'shipToHotel'}}">
+            <switch checked="{{item.enabled}}" data-index="{{index}}" bindchange="onToggleChange" />
+          </block>
+        </view>
+      </view>
+      <block wx:if="{{item.enabled}}">
+        <view class="table-row">
+          <view class="table-cell">
+            <picker mode="date" value="{{item.date}}" data-index="{{index}}" bindchange="onDateChange">
+              <view class="picker">
+                {{item.date}}
+              </view>
+            </picker>
+          </view>
+          <view class="table-cell">
+            <picker mode="time" value="{{item.startTime}}" data-index="{{index}}" bindchange="onStartTimeChange">
+              <view class="picker">
+                {{item.startTime}}
+              </view>
+            </picker>
+            <text>-</text>
+            <picker mode="time" value="{{item.endTime}}" data-index="{{index}}" bindchange="onEndTimeChange">
+              <view class="picker">
+                {{item.endTime}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <block wx:if="{{item.name === 'waitingTime' || item.name === 'workingTime'}}">
+          <button class="add-button" data-index="{{index}}" bindtap="addTimeNote">添加</button>
+        </block>
+      </block>
+    </block>
+  </view>
+</view>

@@ -25,5 +25,6 @@
     </view>
     <button bind:tap="onSave" class="btns" size="default" type="primary">保存</button>
     <button bind:tap="navigateToDocument" class="btns" size="default" type="default">我的文档</button>
+    <button bind:tap="navigateToTimeNote" class="btns" size="default" type="default">时间小计</button>
   </block>
 </view>

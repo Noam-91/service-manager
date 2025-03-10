@@ -4,7 +4,8 @@
     "pages/serviceReport/serviceReport",
     "pages/serviceStatement/serviceStatement",
     "components/workReport/workReport",
-    "pages/document/document"
+    "pages/document/document",
+    "pages/timeNote/timeNote"
   ],
   "entryPagePath": "pages/index/index",
   "window": {

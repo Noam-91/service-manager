@@ -92,6 +92,12 @@ Component({
       wx.navigateTo({
         url: "/pages/document/document",
       })
+    },
+
+    navigateToTimeNote:function(){
+      wx.navigateTo({
+        url: "/pages/timeNote/timeNote",
+      })
     }
   }
 })

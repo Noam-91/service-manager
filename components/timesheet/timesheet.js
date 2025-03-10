@@ -117,14 +117,21 @@ Component({
     
     // Add a new line of Timesheet
     addNewLine() {
-      const nextDate = util.getNextDate(this.data.localData.work_days[this.data.localData.work_days.length-1].date)
+      const work_days_copy = this.data.localData.work_days;
+      let nextDate;
+      if(!work_days_copy||work_days_copy.length===0){
+        nextDate = util.getNextDate();
+      }else{
+        nextDate = util.getNextDate(work_days_copy[work_days_copy.length-1].date)
+      }
+    
       const newWorkDay = {
         day: util.getDay(nextDate),
         date: nextDate,
-        project:this.data.localData.work_days[this.data.localData.work_days.length-1].project,
-        number_of_people:this.data.localData.work_days[this.data.localData.work_days.length-1].number_of_people,
+        project:work_days_copy?work_days_copy[work_days_copy.length-1].project:"",
+        number_of_people:work_days_copy?work_days_copy[work_days_copy.length-1].number_of_people:"",
       }
-      const newContent = this.data.localData.work_days ? [...this.data.localData.work_days, newWorkDay] : [newWorkDay];
+      const newContent = work_days_copy ? [...work_days_copy, newWorkDay] : [newWorkDay];
       this.setData({
         localData: {
           ...this.data.localData,
